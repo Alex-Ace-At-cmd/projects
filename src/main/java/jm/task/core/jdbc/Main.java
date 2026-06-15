@@ -14,9 +14,10 @@ public class Main {
         userDao.saveUser("Ash", "Float", (byte)17);
         userDao.saveUser("Almond", "Byte", (byte)20);
 
-        userDao.getAllUsers();
-       userDao.cleanUsersTable();
-       userDao.dropUsersTable();
+        userDao.getAllUsers().forEach(System.out::println);
+
+        userDao.cleanUsersTable();
+        userDao.dropUsersTable();
 
 
 
