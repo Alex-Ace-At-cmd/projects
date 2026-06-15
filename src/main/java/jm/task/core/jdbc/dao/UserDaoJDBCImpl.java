@@ -33,7 +33,7 @@ public class UserDaoJDBCImpl implements UserDao {
             PreparedStatement stat = conn.prepareStatement(drop)) {
             stat.executeUpdate();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -47,8 +47,10 @@ public class UserDaoJDBCImpl implements UserDao {
             insertStat.setByte(3, age);
             insertStat.executeUpdate();
 
+            System.out.println("User - " + name + "has been added to data base");
+
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -60,7 +62,7 @@ public class UserDaoJDBCImpl implements UserDao {
             removeStat.setLong(1, id);
             removeStat.executeUpdate();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -75,14 +77,16 @@ public class UserDaoJDBCImpl implements UserDao {
 
             while(rs.next()) {
                 User user = new User();
+
                 user.setId(rs.getLong("id"));
                 user.setName(rs.getString("name"));
                 user.setLastName(rs.getString("lastName"));
                 user.setAge(rs.getByte("age"));
                 users.add(user);
+                System.out.println(user);
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
         return users;
@@ -95,7 +99,7 @@ public class UserDaoJDBCImpl implements UserDao {
             PreparedStatement stat = conn.prepareStatement(clean)) {
             stat.executeUpdate();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }
