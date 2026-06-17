@@ -16,6 +16,7 @@ public class Main {
 
         userDao.getAllUsers().forEach(System.out::println);
 
+
         userDao.cleanUsersTable();
         userDao.dropUsersTable();
 
