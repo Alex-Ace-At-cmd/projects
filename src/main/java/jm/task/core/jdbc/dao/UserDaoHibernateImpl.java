@@ -48,7 +48,7 @@ public class UserDaoHibernateImpl implements UserDao {
             user.setName(name);
             user.setLastName(lastName);
             user.setAge(age);
-            session.persist(user);
+            session.save(user);
 
             tx.commit();
         } catch (Exception e) {
@@ -76,11 +76,13 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
+        List<User> users = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            users = session.createQuery("from User", User.class).getResultList();
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        List<User> users = session.createQuery("from User", User.class).getResultList();
-
-        session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return users;
 
     }
