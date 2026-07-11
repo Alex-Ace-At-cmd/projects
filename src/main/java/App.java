@@ -13,8 +13,10 @@ public class App {
         Cat cat = (Cat) applicationContext.getBean(Cat.class);
         Cat cat1 = (Cat) applicationContext.getBean(Cat.class);
 
+
         System.out.println(bean == helloWorld);
         System.out.println(cat == cat1);
+
 
 
 
